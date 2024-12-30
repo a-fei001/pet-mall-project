@@ -1,0 +1,73 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    #表示引入外部的application-dev.yml文件 最重要的一句
+    #理论上这句必须 下面非必须
+    active: dev
+  #表示可以允许 Bean 之间存在循环依赖
+  main:
+    allow-circular-references: true
+
+  #这里的druid:... alioss:... 不必要写在spring:层级下面
+  #这里写在这里只是因为老师给的代码database:放在这里了 顺手将alioss放这里 在一起便于管理
+  datasource:
+    driver-class-name: ${sky.datasource.driver-class-name}
+    url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${sky.datasource.username}
+    password: ${sky.datasource.password}
+
+  mvc:
+    cors:
+      enabled: true
+      allowed-origins: "http://127.0.0.1:5500"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.shuyuan.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+
+user:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间
+    # TODO 记得项目完成后 把时间修改回2h
+    admin-ttl: 72000000000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

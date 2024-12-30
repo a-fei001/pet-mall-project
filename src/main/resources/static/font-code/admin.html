@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物商城 - 管理后台</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>宠物商城管理后台</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button id="logoutBtn">退出登录</button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" data-section="pets">宠物管理</button>
+        <button class="nav-btn" data-section="users">用户管理</button>
+    </nav>
+
+    <main>
+        <!-- 宠物管理部分 -->
+        <section id="petsSection" class="section active">
+            <div class="section-header">
+                <h2>宠物管理</h2>
+                <button id="addPetBtn" class="add-btn">添加宠物</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>名称</th>
+                            <th>图片</th>
+                            <th>年龄(月)</th>
+                            <th>价格(￥)</th>
+                            <th>描述</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="petsTableBody">
+                        <!-- 宠物数据将通过JavaScript动态添加 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 用户管理部分 -->
+        <section id="usersSection" class="section">
+            <div class="section-header">
+                <h2>用户管理</h2>
+                <button id="addUserBtn" class="add-btn">添加用户</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>用户名</th>
+                            <th>手机号</th>
+                            <th>头像</th>
+                            <th>用户类型</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- 用户数据将通过JavaScript动态添加 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- 宠物表单模态框 -->
+    <div id="petModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="petModalTitle">添加宠物</h2>
+            <form id="petForm">
+                <input type="hidden" id="petId">
+                <div class="form-group">
+                    <label for="petName">名称</label>
+                    <input type="text" id="petName" required>
+                </div>
+                <div class="form-group">
+                    <label for="petImage">图片URL</label>
+                    <input type="text" id="petImage">
+                </div>
+                <div class="form-group">
+                    <label for="petAge">年龄(月)</label>
+                    <input type="number" id="petAge" required>
+                </div>
+                <div class="form-group">
+                    <label for="petPrice">价格</label>
+                    <input type="number" id="petPrice" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="petDescription">描述</label>
+                    <textarea id="petDescription"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">保存</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 用户表单模态框 -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="userModalTitle">添加用户</h2>
+            <form id="userForm">
+                <input type="hidden" id="userId">
+                <div class="form-group">
+                    <label for="userFormName">用户名</label>
+                    <input type="text" id="userFormName" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPhone">手机号</label>
+                    <input type="text" id="userPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">密码</label>
+                    <input type="password" id="userPassword">
+                </div>
+                <div class="form-group">
+                    <label for="userImage">头像URL</label>
+                    <input type="text" id="userImage">
+                </div>
+                <div class="form-group">
+                    <label for="userProperty">用户类型</label>
+                    <select id="userProperty" required>
+                        <option value="0">普通用户</option>
+                        <option value="1">管理员</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">保存</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html> 
